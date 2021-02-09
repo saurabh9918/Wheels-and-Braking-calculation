@@ -1,0 +1,24 @@
+Fp= 600;   %pedal force
+Dmc= 19.08;  %diameter of master cylinder
+Dcal= 25.4;  %diameter of brake calliper
+D= 531.7236; %diameter of tyre
+Drot= 220; %effective diameter of rotor
+M= 450; %total vehicle weight
+fr= 0.55; %front:rear weight distribution
+mf = fr*(M/2); %front load on single wheel
+mr= (1-fr)*(M/2); %Rear load on single wheel
+x= 0.4; % cofficient of friction between pad and rotor
+c= 5; %pedal ratio
+Fmc = c*Fp; %force on master cylinder
+Amc = (pi/4)*Dmc*Dmc; %area of master cylinder
+Pmc = Fmc/Amc; %pressure genreated at master cylinder
+Acal = (pi/4)*Dcal*Dcal; %area of brake calliper
+Fcal= Pmc*Acal; %force genreated on calliper piston
+%for tandem master cylinder
+Fcall= 2*Fcal; %force becomes twice because of presence of two pistons
+Fbr = x*Fcall; %braking force at rotor
+Tbr= Fbr*(Drot/2); %torque due to rotor on wheels
+Fb= Tbr/(D/2); %final braking force on one wheel
+Fbtot = 4*Fb; %total braking force genreated
+ad= Fbtot/M; %overall deacceleration acheived
+s=(13.89*13.89)/(2*ad); %stopping distance
